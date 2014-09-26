@@ -3,8 +3,7 @@ var resul = null;
 $.ajax({	// Pegar ID's necessários para pular
 	type: 'GET',
 	url: 'https://plug.dj/_/rooms/state',
-	contentType: 'application/json',
-	data: '{"id": 1234567}'}
+	contentType: 'application/json'}
 	).done(function( msg ) {
 		resul = msg.data[0];
 		

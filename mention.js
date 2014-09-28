@@ -22,8 +22,8 @@ javascript: (function(){
         }
         
         if ( val <= total ){
-             if ( document.getElementById('som' + i))
-                document.getElementById('som' + i).remove();
+             if ( document.getElementById('som' + val))
+                document.getElementById('som' + val).remove();
             
              $('head').append(
                   $('<audio/>', {

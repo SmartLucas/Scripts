@@ -1,6 +1,6 @@
 javascript: (function(){
-  
-    for (var i = 1; i <= 8; i++){
+    int total = 10;
+    for (var i = 1; i <= total; i++){
       $('head').append(
           $('<audio/>', {
               id: 'som' + i, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3'})
@@ -8,4 +8,4 @@ javascript: (function(){
     }
 
     API.on(API.CHAT, function(_){ _.type === 'mention' && 
-                      document.getElementById('som' + (Math.floor(Math.random()*8)+1)).play(); }) })();
+                      document.getElementById('som' + (Math.floor(Math.random()*total)+1)).play(); }) })();

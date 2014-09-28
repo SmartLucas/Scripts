@@ -1,5 +1,5 @@
 javascript: (function(){
-    int total = 10;
+    var total = 10;
     for (var i = 1; i <= total; i++){
       $('head').append(
           $('<audio/>', {

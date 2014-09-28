@@ -1,5 +1,5 @@
 javascript: (function(){
-    var total = 10;
+    var total = 12;
     for (var i = 1; i <= total; i++){
       $('head').append(
           $('<audio/>', {
@@ -57,4 +57,5 @@ javascript: (function(){
     };
     
     API.on(API.CHAT_COMMAND, comando);
+    API.chatLog('Delícia de menção ativada, cara!', true);
 })();

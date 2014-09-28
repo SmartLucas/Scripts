@@ -1,16 +1,18 @@
     var total = 12,
-        escolhido = 0;
+        escolhido = 0,
+        sons = [];
         
     for (var i = 1; i <= total; i++){
-      $('head').append(
-          $('<audio/>', {
-              id: 'som' + i, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3'})
-      );
+        var temp = document.createElement('audio');
+        temp.setAttribute('src','http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3');
+        temp.volume = 1;
+        
+        sons.push(temp);
     }
 
     function mencao(obj){
         if (obj.type == 'mention')
-            document.getElementById('som' + ( escolhido == 0 ? (Math.floor(Math.random()*total)+1) : escolhido)).play();
+            sons[( escolhido == 0 ? (Math.floor(Math.random()*sons.length)) : escolhido-1)].play();
     };
     
     function adicionar(val){
@@ -22,41 +24,40 @@
             return;
         }
         
-        if ( val <= total ){
-             if ( document.getElementById('som' + val))
-                document.getElementById('som' + val).remove();
-            
-             $('head').append(
-                  $('<audio/>', {
-                      id: 'som' + val, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + val + '.mp3'})
-              );
+        if ( val <= sons.length ){
+            var temp = document.createElement('audio');
+            temp.setAttribute('src','http://www.mrpbrasil.com/Caipira/sons/som' + val + '.mp3');
+            temp.volume = 1;
+
+            sons[val-1] = temp;
         }
         else{
             for (var i = total+1; i <= val; i++){
-                 $('head').append(
-                      $('<audio/>', {
-                          id: 'som' + i, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3'})
-                  );
+                var temp = document.createElement('audio');
+                temp.setAttribute('src','http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3');
+                temp.volume = 1;
+                
+                sons.push(temp);
             }
         }
-        total = (val > total ? val : total);
         API.chatLog('Som(s) adicionado(s).', false);
     };
     
     function link(val){
         if (!val)
             return;
-
-        $('head').append(
-            $('<audio/>', {
-                id: 'som' + ++total, src: val})
-        );
         
+        var temp = document.createElement('audio');
+        temp.setAttribute('src',val);
+        temp.volume = 1;
+                
+        sons.push(temp);
+
         API.chatLog('Som(s) adicionado(s).', false);
     };
     
     function setSom(val){
-        if ( isNaN(val) || val < 0 || val > total){
+        if ( isNaN(val) || val < 0 || val > sons.length){
             API.chatLog('Som inválido!', true);
             return;
         }
@@ -66,8 +67,8 @@
     }
     
     function tocar(val){
-        if ( !isNaN(val) && val >= 0 && val <= total)
-            document.getElementById('som' + ( val == 0 ? (Math.floor(Math.random()*total)+1) : val)).play();
+        if ( !isNaN(val) && val >= 0 && val <= sons.length)
+            sons[( val == 0 ? (Math.floor(Math.random()*sons.length)) : val-1)].play();
         else
             API.chatLog('Valor inválido', true);
     };

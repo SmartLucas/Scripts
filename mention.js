@@ -16,18 +16,41 @@ javascript: (function(){
         if ( isNaN(val))
             return;
         
-        if ( val <= total ){
+        if ( val <= 0 ){
             API.chatLog('Nenhum som para adicionar!', true);
             return;
         }
         
-        for (var i = total+1; i <= val; i++){
+        if ( val <= total ){
+             if ( document.getElementById('som' + i))
+                document.getElementById('som' + i).remove();
+            
              $('head').append(
                   $('<audio/>', {
-                      id: 'som' + i, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3'})
+                      id: 'som' + val, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + val + '.mp3'})
               );
         }
-        total = val;
+        else{
+            for (var i = total+1; i <= val; i++){
+                 $('head').append(
+                      $('<audio/>', {
+                          id: 'som' + i, src: 'http://www.mrpbrasil.com/Caipira/sons/som' + i + '.mp3'})
+                  );
+            }
+        }
+        total = (val > total ? val : total);
+        API.chatLog('Som(s) adicionado(s).', false);
+    };
+    
+    function link(val){
+        if (!val)
+            return;
+
+        $('head').append(
+            $('<audio/>', {
+                id: 'som' + ++total, src: val})
+        );
+        
         API.chatLog('Som(s) adicionado(s).', false);
     };
     
@@ -69,6 +92,9 @@ javascript: (function(){
         
         if ( arr[0] == '/set')
             setSom(parseInt(arr[1]));
+        
+        if ( arr[0] == '/link')
+            link(arr[1]);
             
     };
     

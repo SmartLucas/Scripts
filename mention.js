@@ -42,7 +42,7 @@ javascript: (function(){
     }
     
     function tocar(val){
-        if ( val && val >= 0 && val <= total)
+        if ( !isNaN(val) && val >= 0 && val <= total)
             document.getElementById('som' + ( val == 0 ? (Math.floor(Math.random()*total)+1) : val)).play();
         else
             API.chatLog('Valor inválido', true);

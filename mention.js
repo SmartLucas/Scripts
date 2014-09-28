@@ -1,5 +1,7 @@
 javascript: (function(){
-    var total = 12;
+    var total = 12,
+        escolhido = 0;
+        
     for (var i = 1; i <= total; i++){
       $('head').append(
           $('<audio/>', {
@@ -8,7 +10,7 @@ javascript: (function(){
     }
 
     API.on(API.CHAT, function(_){ _.type === 'mention' && 
-                      document.getElementById('som' + (Math.floor(Math.random()*total)+1)).play(); });
+        document.getElementById('som' + ( escolhido == 0 ? (Math.floor(Math.random()*total)+1) : escolhido)).play(); });
                       
     function adicionar(val){
         if ( isNaN(val))
@@ -29,9 +31,19 @@ javascript: (function(){
         API.chatLog('Som(s) adicionado(s).', false);
     };
     
+    function setSom(val){
+        if ( isNaN(val) || val < 0 || val > total){
+            API.chatLog('Som inválido!', true);
+            return;
+        }
+        
+        escolhido = val;
+        API.chatLog('Som definido: ' + (val == 0 ? ' aleatório' : val), false);
+    }
+    
     function tocar(val){
-        if ( val && val >= 1 && val <= total)
-            document.getElementById('som' + val).play();
+        if ( val && val >= 0 && val <= total)
+            document.getElementById('som' + ( escolhido == 0 ? (Math.floor(Math.random()*total)+1) : escolhido)).play();
         else
             API.chatLog('Valor inválido', true);
     };
@@ -54,8 +66,14 @@ javascript: (function(){
         
         if ( arr[0] == '/play')
             tocar(parseInt(arr[1]));
+        
+        if ( arr[0] == '/set')
+            setSom(parseInt(arr[1]));
+            
     };
     
     API.on(API.CHAT_COMMAND, comando);
     API.chatLog('Delícia de menção ativada, cara!', true);
+    API.chatLog('Comandos: /play [0-12] = toca o som correspondente ao número, 0 para aleatório;', true);
+    API.chatLog('/set [0-12] = define um som fixo para tocar quando for mencionado, 0 para aleatório', true);
 })();

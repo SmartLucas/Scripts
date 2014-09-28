@@ -9,9 +9,13 @@ javascript: (function(){
       );
     }
 
-    API.on(API.CHAT, function(_){ _.type === 'mention' && 
-        document.getElementById('som' + ( escolhido == 0 ? (Math.floor(Math.random()*total)+1) : escolhido)).play(); });
-                      
+    API.on(API.CHAT, mencao);
+    
+    function mencao(obj){
+        if (obj.type == 'mention')
+            document.getElementById('som' + ( escolhido == 0 ? (Math.floor(Math.random()*total)+1) : escolhido)).play();
+    };
+    
     function adicionar(val){
         if ( isNaN(val))
             return;

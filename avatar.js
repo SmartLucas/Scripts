@@ -25,10 +25,12 @@ function alterarAvatar(avatar){
 
 function velocidade(val){
   window.clearTimeout(thread);
-  thread = setInterval(alterarAvatar, velAvatar);
+  thread = setInterval(alterarAvatar, val);
+  velAvatar = val;
 }
 
 function pararAvatar(){
   window.clearTimeout(thread);
   alterarAvatar(anterior);
 }
+

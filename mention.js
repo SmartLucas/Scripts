@@ -1,5 +1,5 @@
 javascript: (function(){
-    var total = 12,
+    var total = 24,
         escolhido = 0;
         
     for (var i = 1; i <= total; i++){
@@ -104,6 +104,6 @@ javascript: (function(){
     
     API.on(API.CHAT_COMMAND, comando);
     API.chatLog('Delícia de menção ativada, cara!', true);
-    API.chatLog('Comandos: /play [0-12] = toca o som correspondente ao número, 0 para aleatório;', true);
-    API.chatLog('/set [0-12] = define um som fixo para tocar quando for mencionado, 0 para aleatório', true);
+    API.chatLog('Comandos: /play [0-' + total + '] = toca o som correspondente ao número, 0 para aleatório; ' +
+                '/set [0-' + total + '] = define um som fixo para tocar quando for mencionado, 0 para aleatório (padrão)', true);
 })();

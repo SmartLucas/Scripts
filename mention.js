@@ -1,5 +1,5 @@
 javascript: (function(){
-    var total = 24,
+    var total = 35,
         escolhido = 0;
         
     for (var i = 1; i <= total; i++){

@@ -11,6 +11,10 @@ if (API.getUser().role > 2){
 	
 	var edon = true;
 	
+	function response(obj, msg){
+		API.sendChat('[Ed > @' + obj.un + '] ' + msg.replace(/<\/?[^>]+(>|$)/g, ""));
+	}
+	
 	function ed(obj){
 		if ( API.getUser(obj.uid).role > 2 && obj.message.indexOf('!edoff') != -1 ){
 			edon = false;
@@ -35,10 +39,10 @@ if (API.getUser().role > 2){
 					msg : obj.message.substring(4)
 				},
 				success: function(data) {
-					API.sendChat('[Ed] ' + data.replace(/<\/?[^>]+(>|$)/g, ""));
+					response(obj, data);
 				},
 				error: function(errorMsg) {
-					API.sendChat('Falha ao enviar mensagem pro Ed: ' + errorMsg);
+					console.log(errorMsg);
 				}
 			});
 	}

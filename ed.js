@@ -12,6 +12,10 @@ if (API.getUser().role > 2){
 	var edon = true;
 	
 	function response(obj, msg){
+		if ( msg.toLowerCase().indexOf('seu ip é') ){
+			API.sendChat('[Ed > @' + obj.un + '] Resposta bloqueada: IP do host');
+			return;
+		}
 		API.sendChat('[Ed > @' + obj.un + '] ' + msg.replace(/<\/?[^>]+(>|$)/g, ""));
 	}
 	

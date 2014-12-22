@@ -190,7 +190,7 @@
         retrieveSettings: retrieveSettings,
         settings: {
             botName: "basicBot",
-            language: "english",
+            language: "portuguese",
             chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/pt.json",
             maximumAfk: 120,
             afkRemoval: true,

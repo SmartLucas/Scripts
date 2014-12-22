@@ -1,18 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-LuizEdP LuizEdP
- 
-10  Watch 
-  Star 15
- Fork 108Yemasthui/basicBot
- branch: master  basicBot/basicBot.js
-YemasthuiYemasthui 10 days ago Temporary getWaitListPosition fix.
-2 contributors YemasthuiHunchmun
-2843 lines (2716 sloc)  138.933 kb RawBlameHistory   
 /**
  *Copyright 2014 Yemasthui
  *Modifications (including forks) of the code to fit personal needs are allowed only for personal use and should refer back to the original source.
@@ -69,7 +54,7 @@ YemasthuiYemasthui 10 days ago Temporary getWaitListPosition fix.
     var loadChat = function (cb) {
         if (!cb) cb = function () {
         };
-        $.get("https://rawgit.com/Yemasthui/basicBot/master/lang/pt.json", function (json) {
+        $.get("https://rawgit.com/Yemasthui/basicBot/master/lang/langIndex.json", function (json) {
             var link = basicBot.chatLink;
             if (json !== null && typeof json !== "undefined") {
                 langIndex = json;
@@ -199,14 +184,14 @@ YemasthuiYemasthui 10 days ago Temporary getWaitListPosition fix.
         loggedInID: null,
         scriptLink: "https://rawgit.com/Yemasthui/basicBot/master/basicBot.js",
         cmdLink: "http://git.io/245Ppg",
-        chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/en.json",
+        chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/pt.json",
         chat: null,
         loadChat: loadChat,
         retrieveSettings: retrieveSettings,
         settings: {
             botName: "basicBot",
             language: "english",
-            chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/en.json",
+            chatLink: "https://rawgit.com/Yemasthui/basicBot/master/lang/pt.json",
             maximumAfk: 120,
             afkRemoval: true,
             maximumDc: 60,
@@ -2726,6 +2711,7 @@ YemasthuiYemasthui 10 days ago Temporary getWaitListPosition fix.
                              indexMuted = i;
                              wasMuted = true;
                              }
+
                              }
                              if (!wasMuted) return API.sendChat(subChat(basicBot.chat.notmuted, {name: chat.un}));
                              basicBot.room.mutedUsers.splice(indexMuted);
@@ -2855,5 +2841,3 @@ YemasthuiYemasthui 10 days ago Temporary getWaitListPosition fix.
 
     loadChat(basicBot.startup);
 }).call(this);
-Status API Training Shop Blog About
-© 2014 GitHub, Inc. Terms Privacy Security Contact

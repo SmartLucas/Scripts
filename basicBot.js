@@ -1133,7 +1133,6 @@
             Function.prototype.toString = function () {
                 return 'Function.'
             };
-            setInterval(basicBot.room.roulette, 6e5);
             var u = API.getUser();
             if (basicBot.userUtilities.getPermission(u) < 2) return API.chatLog(basicBot.chat.greyuser);
             if (basicBot.userUtilities.getPermission(u) === 2) API.chatLog(basicBot.chat.bouncer);
@@ -2842,3 +2841,5 @@
 
     loadChat(basicBot.startup);
 }).call(this);
+
+setInterval(function(){API.sendChat('!roulette');}, 6e5);

@@ -302,7 +302,7 @@
                     var ind = Math.floor(Math.random() * basicBot.room.roulette.participants.length);
                     var winner = basicBot.room.roulette.participants[ind];
                     basicBot.room.roulette.participants = [];
-//                    var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
+                    var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
                     var pos = 2;
                     var user = basicBot.userUtilities.lookupUser(winner);
                     var name = user.username;
@@ -1134,6 +1134,7 @@
             Function.prototype.toString = function () {
                 return 'Function.'
             };
+            setInterval(basicBot.room.roulette, 6e5);
             var u = API.getUser();
             if (basicBot.userUtilities.getPermission(u) < 2) return API.chatLog(basicBot.chat.greyuser);
             if (basicBot.userUtilities.getPermission(u) === 2) API.chatLog(basicBot.chat.bouncer);
